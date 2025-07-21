@@ -1,6 +1,6 @@
 spring:
   application:
-    name: onboarding-service
+    name: relocation-service
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}
