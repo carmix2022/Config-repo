@@ -1,0 +1,85 @@
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 0
+
+springdoc:
+  api-docs:
+    enabled: true
+
+logging:
+  level:
+    root: info
+    by.javaguru.jdmik4.relocationservice: debug
+    org.hibernate:
+      SQL: debug
+      type.descriptor.sql.BasicBinder: TRACE
+
+client:
+  feign:
+    security-service: http://SECURITY-SERVICE
+    account-service: http://ACCOUNTING-SERVICE
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 2
+        minimum-number-of-calls: 1
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5s
+        failure-rate-threshold: 50
+        event-consumer-buffer-size: 10
+        ignore-exceptions:
+          - by.javaguru.jdmik4.relocationservice.client.exception.BudgetAllocationException
+          - by.javaguru.jdmik4.relocationservice.client.exception.SecurityCheckException
+    instances:
+      accountServiceCircuitBreaker:
+        baseConfig: default
+        wait-duration-in-open-state: 6s
+      securityServiceCircuitBreaker:
+        baseConfig: default
+        wait-duration-in-open-state: 7s
+    circuit-breaker-aspect-order: 1
+
+  retry:
+    configs:
+      default:
+        maxAttempts: 2
+        waitDuration: 1000ms
+    retry-aspect-order: 2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: mapping,bus-refresh,bus-env,health,circuitbreakerevents,retry
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
