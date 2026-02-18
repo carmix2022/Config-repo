@@ -61,8 +61,8 @@ resilience4j:
         failure-rate-threshold: 50
         event-consumer-buffer-size: 10
         ignore-exceptions:
-          - by.javaguru.jdmik4.relocationservice.client.exception.BudgetAllocationException
-          - by.javaguru.jdmik4.relocationservice.client.exception.SecurityCheckException
+          - by.javaguru.jdmik13.onboardingservice.client.exception.BudgetAllocationException
+          - by.javaguru.jdmik13.onboardingservice.client.exception.SecurityCheckException
     instances:
       accountServiceCircuitBreaker:
         baseConfig: default
