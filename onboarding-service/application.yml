@@ -50,7 +50,7 @@ client:
   feign:
     security-service: http://SECURITY-SERVICE
     account-service: http://ACCOUNTING-SERVICE
-    profiler-service: http://PROFILER-SERVICE
+    # profiler-service: http://PROFILER-SERVICE
 
 resilience4j:
   circuitbreaker:
