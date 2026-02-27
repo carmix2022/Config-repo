@@ -95,9 +95,10 @@ management:
   health:
     circuitbreakers:
       enabled: true
-  tracing:
-    sampling:
-      probability: 1.0 # Sample all traces
-    url: http://localhost:4317
-tracing:
-    url: http://localhost:4317
+      
+opentracing:
+  enable-b3-propagation: true
+  jaeger:
+    udp-sender:
+      host: localhost
+      port: 6831
