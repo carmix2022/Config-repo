@@ -38,13 +38,10 @@ springdoc:
   api-docs:
     enabled: true
 
+
 logging:
-  level:
-    root: info
-    by.javaguru.jdmik13.onboardingservice: debug
-    org.hibernate:
-      SQL: debug
-      type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    level: "%5p [${spring.application.name},%X{traceId},%X{spanId}]"
 
 client:
   feign:
