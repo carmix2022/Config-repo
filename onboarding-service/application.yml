@@ -95,11 +95,4 @@ management:
   health:
     circuitbreakers:
       enabled: true
-  tracing:
-    sampling:
-      probability: 1.0
-      
-tracing:
-  url: http://jaeger-collector:4317
-
 
