@@ -95,10 +95,10 @@ management:
   health:
     circuitbreakers:
       enabled: true
-  tracing:
-    enabled: true # Enables Micrometer tracing
-    sampling:
-      probability: 1.0 # Sample all traces
-  otlp:
-    tracing:
-      endpoint: ${JAEGER_URL:http://localhost:4318/v1/traces}
+      
+opentracing:
+  enable-b3-propagation: true
+  jaeger:
+    udp-sender:
+      host: localhost
+      port: 6831
