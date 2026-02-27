@@ -95,10 +95,11 @@ management:
   health:
     circuitbreakers:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
       
-opentracing:
-  enable-b3-propagation: true
-  jaeger:
-    udp-sender:
-      host: localhost
-      port: 6831
+tracing:
+  url: http://jaeger-collector:4317
+
+
