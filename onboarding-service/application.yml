@@ -103,44 +103,44 @@ management:
     tracing:
       endpoint: ${JAEGER_URL:http://localhost:4318/v1/traces}
       
-  kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092, localhost:9094, localhost:9096}
-    consumer:
-      group-id: jdmik13-onboarding-service-responses-group
-      properties:
-        spring.json.trusted.packages: by.javaguru.jdmik13.*
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      acks: all
-      retries: 10
-      compression-type: lz4
-      batch-size: 65536
-      properties:
-        delivery.timeout.ms: 20_000
-        request.timeout.ms: 4_500
-        retry.backoff.ms: 500
-        linger.ms: 0
-        enable.idempotence: true
-        max.in.flight.requests.per.connection: 5
-    topic:
-      simple:
-        accounting-allocate-requests: jdmik13.accounting.allocate.request
-        security-check-requests: jdmik13.security.check.request
-      configured:
-        internal-onboarding-responses:
-          name: jdmik13.onboarding.response
-          partitions: 3
-          replicas: 3
-          min-in-sync-replicas: 2
-        notification-send-requests:
-          name: jdmik13.notification.request
-          partitions: 3
-          replicas: 3
-          min-in-sync-replicas: 2
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092, localhost:9094, localhost:9096}
+  consumer:
+    group-id: jdmik13-onboarding-service-responses-group
+    properties:
+      spring.json.trusted.packages: by.javaguru.jdmik13.*
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    acks: all
+    retries: 10
+    compression-type: lz4
+    batch-size: 65536
+    properties:
+      delivery.timeout.ms: 20_000
+      request.timeout.ms: 4_500
+      retry.backoff.ms: 500
+      linger.ms: 0
+      enable.idempotence: true
+      max.in.flight.requests.per.connection: 5
+  topic:
+    simple:
+      accounting-allocate-requests: jdmik13.accounting.allocate.request
+      security-check-requests: jdmik13.security.check.request
+    configured:
+      internal-onboarding-responses:
+        name: jdmik13.onboarding.response
+        partitions: 3
+        replicas: 3
+        min-in-sync-replicas: 2
+      notification-send-requests:
+        name: jdmik13.notification.request
+        partitions: 3
+        replicas: 3
+        min-in-sync-replicas: 2
 
 kafka-error-handler:
-  backoff-interval: 500
-  backoff-attempts: 5
-  dlt-suffix: -dlt
+backoff-interval: 500
+backoff-attempts: 5
+dlt-suffix: -dlt
 
