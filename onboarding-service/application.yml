@@ -103,7 +103,6 @@ management:
     tracing:
       endpoint: ${JAEGER_URL:http://localhost:4318/v1/traces}
       
-spring:      
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092, localhost:9094, localhost:9096}
     consumer:
