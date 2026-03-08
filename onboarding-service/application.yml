@@ -27,7 +27,7 @@ spring:
     consumer:
       group-id: jdmik13-onboarding-service-responses-group
       properties:
-        spring.json.trusted.packages: by.javaguru.jdmik13.core.*
+        spring.json.trusted.packages: by.javaguru.jdmik13.core
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
