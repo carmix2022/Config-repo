@@ -35,7 +35,7 @@ spring:
       retries: 10
       compression-type: lz4
       batch-size: 65536
-      # transaction-id-prefix: ${POD_NAME:${random.uuid}}-onboarding-service-tx-
+      transaction-id-prefix: ${POD_NAME:${random.uuid}}-onboarding-service-tx-
       properties:
         delivery.timeout.ms: 20_000
         request.timeout.ms: 4_500
