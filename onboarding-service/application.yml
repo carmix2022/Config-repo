@@ -58,6 +58,16 @@ spring:
           partitions: 3
           replicas: 3
           min-in-sync-replicas: 2
+        outbox-events:
+          name: jdmik13.onboarding.outbox
+          partitions: 3
+          replicas: 3
+          min-in-sync-replicas: 2
+      
+outbox:
+  batch-size: 2
+  lock-interval: PT5S
+  scheduler-fixed-delay-ms: 4000
       
 kafka-error-handler:
   backoff-interval: 500
