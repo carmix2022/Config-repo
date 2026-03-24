@@ -68,6 +68,7 @@ outbox:
   batch-size: 2
   lock-interval: PT5S
   scheduler-fixed-delay-ms: 4000
+  max-retries: 5
       
 kafka-error-handler:
   backoff-interval: 500
